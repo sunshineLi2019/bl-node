@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 16,
+    "editor.mouseWheelZoom": true,
+    "prettier.endOfLine": "auto",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+    // "files.eol": "\r\n"
+}
