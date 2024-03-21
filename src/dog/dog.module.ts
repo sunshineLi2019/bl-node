@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Dog } from './dog.entity';
+import { Dog } from './entities/dog.entity';
 import { DogController } from './dog.controller';
 import { DogService } from './dog.service';
+import { AttentionEntity } from './entities/attention.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Dog])],
+  imports: [TypeOrmModule.forFeature([Dog, AttentionEntity])],
   controllers: [DogController],
   providers: [DogService],
   exports: [DogService],
