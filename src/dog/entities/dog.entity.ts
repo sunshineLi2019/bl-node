@@ -16,7 +16,7 @@ export class Dog {
   recommendations: number;
 
   @Column()
-  title: string;
+  name: string;
 
   @Column()
   age: number;

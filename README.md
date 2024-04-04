@@ -90,4 +90,5 @@ ormconfig。js文件
 npx typeorm migration:create src/migrations/DogRefactor //创建
 npx typeorm migration:run//执行
 
-
+### 错误注意
+event导致更新数据库一直更新不上去，报索引重复
