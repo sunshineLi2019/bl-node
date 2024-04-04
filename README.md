@@ -74,4 +74,20 @@ Nest is [MIT licensed](LICENSE).
 
 
 ## 24-03-21
-多对多就是增加一张关系表用来存储映射关系
+多对多就是增加一张关系表用来存储映射关系、
+
+## 24-4-4
+### transactions  事务（transactions）是一种重要的概念，用于确保一系列操作要么全部成功执行，要么全部回滚（撤销）
+1 引入模块 forRoot
+2 service注入Repository 对象
+
+### Index 索引优化
+
+### 数据迁移
+增量更新，保留数据
+使用专用cli，nest无法使用
+ormconfig。js文件
+npx typeorm migration:create src/migrations/DogRefactor //创建
+npx typeorm migration:run//执行
+
+

@@ -12,14 +12,17 @@ export class Dog {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ default: 0 })
+  recommendations: number;
+
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   age: number;
 
   @JoinTable()
-  @ManyToMany((type) => AttentionEntity, (attention) => attention.dog, {
+  @ManyToMany(() => AttentionEntity, (attention) => attention.dog, {
     cascade: true,
   })
   attention: AttentionEntity[];

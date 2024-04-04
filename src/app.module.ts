@@ -9,6 +9,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { CatsModule } from './cats/cats.moudle';
 import { CatsController } from './cats/cats.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { databaseProviders } from './database.providers';
 @Module({
   imports: [
     DogModule,
@@ -20,8 +21,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'postgres',
       password: 'pass123',
       database: 'postgres',
+      entities: ['dist/**/*.entity.js'],
+      migrations: ['dist/src/migrations/*.js'],
       autoLoadEntities: true,
-      synchronize: true,
+      // synchronize: true,
     }),
   ],
   controllers: [AppController, DogController, CatsController],
@@ -32,6 +35,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
+    ...databaseProviders,
   ],
+  exports: [...databaseProviders],
 })
 export class AppModule {}
