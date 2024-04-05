@@ -34,8 +34,7 @@ export class CatsController {
   @Post()
   @UsePipes(new ValidationPipe())
   async create(@Body() createCatDto: CreateCatDto) {
-    console.log(createCatDto);
-    this.catsService.create(createCatDto);
+    // this.catsService.create(createCatDto);
     return 'This action adds a new cat';
   }
   @Get()

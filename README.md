@@ -91,4 +91,8 @@ npx typeorm migration:create src/migrations/DogRefactor //创建
 npx typeorm migration:run//执行
 
 ### 错误注意
-event导致更新数据库一直更新不上去，报索引重复
+event导致更新数据库一直更新不上去，报索引重复 
+
+
+## 24-04-05
+### !!!全局自动验证需要配合class-validator使用，望周知

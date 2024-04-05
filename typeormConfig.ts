@@ -1,13 +1,12 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-// 基础配置
 const baseConfig: DataSourceOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'pass123',
-  database: 'postgres',
+  host: process.env.DATABASE_HOST || 'localhost',
+  port: +process.env.DATABASE_PORT || 5432,
+  username: process.env.DATABASE_USERNAME || 'postgres',
+  password: process.env.DATABASE_PASSWORD || 'pass123',
+  database: process.env.DATABASE_DATABASE || 'postgres',
 };
 
 // 该对象用于 nestjs typeorm 初始化

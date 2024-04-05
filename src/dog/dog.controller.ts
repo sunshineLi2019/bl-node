@@ -23,10 +23,10 @@ export class DogController {
   async create(@Body() createDogDto: CreateDogDto) {
     return this.dogService.create(createDogDto);
   }
-  // @Post('/recomment')
-  // async recommentDog(@Body() dog: Dog) {
-  //   this.dogService.recommentDog(dog);
-  // }
+  @Post('/recomment')
+  async recommentDog(@Body() dog: Dog) {
+    // this.dogService.recommentDog(dog);
+  }
   @Delete()
   async remove(@Param('id') id: number) {
     const dog = await this.dogService.remove(id);

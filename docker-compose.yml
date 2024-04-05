@@ -6,4 +6,10 @@ services:
     ports:
       - "5432:5432"
     environment: 
+      POSTGRES_USER: '13647'
       POSTGRES_PASSWORD: pass123
+  nest:
+    image: event-image:latest
+    restart: always
+    ports:
+      - "3001:3001"

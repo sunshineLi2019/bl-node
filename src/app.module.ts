@@ -10,24 +10,40 @@ import { CatsModule } from './cats/cats.moudle';
 import { CatsController } from './cats/cats.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from 'typeormConfig';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigAppModule } from './config/config.module';
+
 @Module({
   imports: [
     DogModule,
     CatsModule,
-    TypeOrmModule.forRoot({
-      ...ormConfig,
-      autoLoadEntities: true,
-      synchronize: true,
+    ConfigAppModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        return {
+          type: 'postgres',
+          host: configService.get<string>('host'),
+          port: configService.get<number>('baseport'),
+          username: configService.get<string>('username'),
+          password: configService.get<string>('password'),
+          database: configService.get<string>('database'),
+          entities: ['dist/src/**/entities/*.entity{.js,.ts}'],
+          synchronize: true, // 自动同步实体结构
+          autoLoadEntities: true,
+        };
+      },
+      inject: [ConfigService],
     }),
   ],
   controllers: [AppController, DogController, CatsController],
   providers: [
     AppService,
     CatsService,
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: HttpExceptionFilter,
+    // },
     // ...databaseProviders,
   ],
   // exports: [...databaseProviders],

@@ -34,6 +34,8 @@ export class DogService {
     return dog;
   }
   async create(CreateDogDto: CreateDogDto) {
+    console.log(CreateDogDto);
+
     const attention = await Promise.all(
       CreateDogDto.attention.map((name) => this.preloadAttentByName(name)),
     );
@@ -44,24 +46,24 @@ export class DogService {
     const dog = await this.dogRqpository.findOneBy({ id });
     return this.dogRqpository.remove(dog);
   }
-  // async recommentDog(dog: Dog) {
-  //   const queryRunner = this.dataSource.createQueryRunner();
-  //   await queryRunner.connect();
-  //   await queryRunner.startTransaction();
-  //   try {
-  //     dog.recommendations++;
-  //     const recommendEvent = new Event();
-  //     recommendEvent.name = 'recommend_dog';
-  //     recommendEvent.payload = { dogid: dog.id };
-  //     await queryRunner.manager.save(dog);
-  //     await queryRunner.manager.save(recommendEvent);
-  //     await queryRunner.commitTransaction();
-  //   } catch (err) {
-  //     await queryRunner.rollbackTransaction();
-  //   } finally {
-  //     await queryRunner.release();
-  //   }
-  // }
+  async recommentDog(dog: Dog) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    // try {
+    //   dog.recommendations++;
+    //   const recommendEvent = new Event();
+    //   recommendEvent.name = 'recommend_dog';
+    //   recommendEvent.payload = { dogid: dog.id };
+    //   await queryRunner.manager.save(dog);
+    //   // await queryRunner.manager.save(recommendEvent);
+    //   await queryRunner.commitTransaction();
+    // } catch (err) {
+    //   await queryRunner.rollbackTransaction();
+    // } finally {
+    //   await queryRunner.release();
+    // }
+  }
   private async preloadAttentByName(name: string): Promise<AttentionEntity> {
     const existingAttent = await this.attentRepository.findOneBy({ name });
     if (existingAttent) {

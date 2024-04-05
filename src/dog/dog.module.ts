@@ -7,7 +7,7 @@ import { AttentionEntity } from './entities/attention.entity';
 import { Event } from '../event/entities/event.entity/event.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Dog, AttentionEntity])],
+  imports: [TypeOrmModule.forFeature([Dog, AttentionEntity, Event])],
   controllers: [DogController],
   providers: [DogService],
   exports: [DogService],

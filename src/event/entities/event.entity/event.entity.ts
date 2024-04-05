@@ -1,6 +1,6 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
-@Index(['name'])
+// @Index(['name'])
 @Entity()
 export class Event {
   @PrimaryGeneratedColumn()
